@@ -1,5 +1,11 @@
+import Stepper from "../components/Stepper";
+
 function AddEmployee() {
-  return <div>Add Employee</div>;
+  return (
+    <div>
+      <Stepper />
+    </div>
+  );
 }
 
 export default AddEmployee;
