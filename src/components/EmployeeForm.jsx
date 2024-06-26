@@ -1,30 +1,38 @@
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
+import InputField from "./InputField";
+import Row from "./Row";
 
 function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
   return (
     <FormWrapper title="Employee Details">
-      <label>First Name</label>
-      <input
-        autoFocus
-        required
-        type="text"
-        value={firstName}
-        onChange={e => updateFields({ firstName: e.target.value })}
-      />
-      <label>Last Name</label>
-      <input
-        required
-        type="text"
-        value={lastName}
-        onChange={e => updateFields({ lastName: e.target.value })}
-      />
-      <label>Date of Birth</label>
-      <input
-        required
+      <Row>
+        <InputField
+          placeholder="First Name"
+          label="First Name"
+          autoFocus={true}
+          required
+          value={firstName}
+          onChange={updateFields}
+          fieldName="firstName"
+        />
+        <InputField
+          placeholder="Last Name"
+          label="Last Name"
+          required
+          value={lastName}
+          onChange={updateFields}
+          fieldName="lastName"
+        />
+      </Row>
+      <InputField
         type="date"
+        placeholder="Date of Birth"
+        label="date of Birth"
+        required
         value={dateOfBirth}
-        onChange={e => updateFields({ dateOfBirth: e.target.value })}
+        onChange={updateFields}
+        fieldName="dateOfBirth"
       />
     </FormWrapper>
   );

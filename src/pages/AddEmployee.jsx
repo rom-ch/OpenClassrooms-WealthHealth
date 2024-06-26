@@ -1,9 +1,9 @@
-import Stepper from "../components/Stepper";
+import MultiStepForm from "../components/MultiStepForm";
 
 function AddEmployee() {
   return (
     <div>
-      <Stepper />
+      <MultiStepForm />
     </div>
   );
 }

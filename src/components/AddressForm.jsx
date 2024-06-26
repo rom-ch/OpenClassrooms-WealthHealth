@@ -1,41 +1,49 @@
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
+import InputField from "./InputField";
+import Dropdown from "./Dropdown";
+import Row from "./Row";
 import { states } from "../utils/states";
 
 function AddressForm({ street, city, state, zip, updateFields }) {
   return (
     <FormWrapper title="Address">
-      <label>Street</label>
-      <input
-        autoFocus
-        required
-        type="text"
-        value={street}
-        onChange={e => updateFields({ street: e.target.value })}
-      />
-      <label>City</label>
-      <input
-        required
-        type="text"
-        value={city}
-        onChange={e => updateFields({ city: e.target.value })}
-      />
-      <label>State</label>
-      <select
-        value={state}
-        onChange={e => updateFields({ state: e.target.value })}
-      >
-        {states.map(state => (
-          <option key={state.abbreviation}>{state.name}</option>
-        ))}
-      </select>
-      <label>Zip</label>
-      <input
-        required
-        type="text"
-        value={zip}
-        onChange={e => updateFields({ zip: e.target.value })}
-      />
+      <Row>
+        <InputField
+          placeholder="Street"
+          label="Street"
+          autoFocus={true}
+          required
+          value={street}
+          onChange={updateFields}
+          fieldName="street"
+        />
+        <InputField
+          placeholder="City"
+          label="City"
+          required
+          value={city}
+          onChange={updateFields}
+          fieldName="city"
+        />
+      </Row>
+      <Row>
+        <Dropdown
+          options={states}
+          label="State"
+          fieldName="state"
+          value={state}
+          onChange={updateFields}
+        />
+        <InputField
+          placeholder="Zip"
+          label="Zip"
+          required
+          value={zip}
+          onChange={updateFields}
+          fieldName="zip"
+        />
+      </Row>
     </FormWrapper>
   );
 }
