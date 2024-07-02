@@ -3,9 +3,10 @@ import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Row from "./Row";
+import ErrorMessage from "./ErrorMessage";
 import { states } from "../utils/states";
 
-function AddressForm({ street, city, state, zip, updateFields }) {
+function AddressForm({ street, city, state, zip, updateFields, errors }) {
   return (
     <FormWrapper title="Address">
       <Row>
@@ -44,6 +45,8 @@ function AddressForm({ street, city, state, zip, updateFields }) {
           fieldName="zip"
         />
       </Row>
+      {errors.state && <ErrorMessage>{errors.state}</ErrorMessage>}
+      {errors.zip && <ErrorMessage>{errors.zip}</ErrorMessage>}
     </FormWrapper>
   );
 }
@@ -54,6 +57,7 @@ AddressForm.propTypes = {
   state: PropTypes.string,
   zip: PropTypes.string,
   updateFields: PropTypes.func,
+  errors: PropTypes.object,
 };
 
 export default AddressForm;

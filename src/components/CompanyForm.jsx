@@ -3,9 +3,10 @@ import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Row from "./Row";
+import ErrorMessage from "./ErrorMessage";
 import { departments } from "../utils/departments";
 
-function CompanyForm({ startDate, department, updateFields }) {
+function CompanyForm({ startDate, department, updateFields, errors }) {
   return (
     <FormWrapper title="Company Details">
       <Row>
@@ -26,6 +27,7 @@ function CompanyForm({ startDate, department, updateFields }) {
           onChange={updateFields}
         />
       </Row>
+      {errors.department && <ErrorMessage>{errors.department}</ErrorMessage>}
     </FormWrapper>
   );
 }
@@ -34,6 +36,7 @@ CompanyForm.propTypes = {
   startDate: PropTypes.string,
   department: PropTypes.string,
   updateFields: PropTypes.func,
+  errors: PropTypes.object,
 };
 
 export default CompanyForm;

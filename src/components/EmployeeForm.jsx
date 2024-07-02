@@ -2,8 +2,15 @@ import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Row from "./Row";
+import ErrorMessage from "./ErrorMessage";
 
-function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
+function EmployeeForm({
+  firstName,
+  lastName,
+  dateOfBirth,
+  updateFields,
+  errors,
+}) {
   return (
     <FormWrapper title="Employee Details">
       <Row>
@@ -34,6 +41,7 @@ function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
         onChange={updateFields}
         fieldName="dateOfBirth"
       />
+      {errors.dateOfBirth && <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>}
     </FormWrapper>
   );
 }
@@ -43,6 +51,7 @@ EmployeeForm.propTypes = {
   lastName: PropTypes.string,
   dateOfBirth: PropTypes.string,
   updateFields: PropTypes.func,
+  errors: PropTypes.object,
 };
 
 export default EmployeeForm;

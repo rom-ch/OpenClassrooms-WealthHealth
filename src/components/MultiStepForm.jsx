@@ -6,6 +6,7 @@ import CompanyForm from "./CompanyForm";
 import Stepper from "../components/Stepper";
 import styled from "styled-components";
 import Button from "./Button";
+import { isValidDate, isValidZip } from "../utils/helpers";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
 
 const INITIAL_DATA = {
@@ -47,11 +48,32 @@ const ButtonWrapper = styled.div`
 
 function MultiStepForm() {
   const [data, setData] = useState(INITIAL_DATA);
+  const [errors, setErrors] = useState({
+    zip: "",
+    dateOfBirth: "",
+    state: "",
+    department: "",
+  });
   const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultiStepForm([
-      <EmployeeForm {...data} updateFields={updateFields} key="1" />,
-      <AddressForm {...data} updateFields={updateFields} key="2" />,
-      <CompanyForm {...data} updateFields={updateFields} key="3" />,
+      <EmployeeForm
+        {...data}
+        updateFields={updateFields}
+        key="1"
+        errors={errors}
+      />,
+      <AddressForm
+        {...data}
+        updateFields={updateFields}
+        key="2"
+        errors={errors}
+      />,
+      <CompanyForm
+        {...data}
+        updateFields={updateFields}
+        key="3"
+        errors={errors}
+      />,
     ]);
 
   function updateFields(fieldName, value) {
@@ -60,8 +82,36 @@ function MultiStepForm() {
     });
   }
 
+  function validateFields(stepIndex) {
+    const newErrors = {
+      dateOfBirth: "",
+      state: "",
+      zip: "",
+      department: "",
+    };
+
+    if (stepIndex === 0) {
+      newErrors.dateOfBirth = isValidDate(data.dateOfBirth);
+    }
+
+    if (stepIndex === 1) {
+      newErrors.state = data.state ? "" : "State is required";
+      newErrors.zip = isValidZip(data.zip);
+    }
+
+    if (stepIndex === 2) {
+      newErrors.department = data.department ? "" : "Department is required";
+    }
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).every(error => error === "");
+  }
+
   function onSubmit(e) {
     e.preventDefault();
+    if (!validateFields(currentStepIndex)) return;
+
     if (!isLastStep) return next();
     alert("Successful Account Creation");
     console.log(data);
