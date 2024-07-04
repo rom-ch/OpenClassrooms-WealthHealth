@@ -3,7 +3,6 @@ import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Row from "./Row";
-import ErrorMessage from "./ErrorMessage";
 import { states } from "../utils/states";
 
 function AddressForm({ street, city, state, zip, updateFields, errors }) {
@@ -18,7 +17,10 @@ function AddressForm({ street, city, state, zip, updateFields, errors }) {
           value={street}
           onChange={updateFields}
           fieldName="street"
+          width="full"
         />
+      </Row>
+      <Row>
         <InputField
           placeholder="City"
           label="City"
@@ -35,6 +37,7 @@ function AddressForm({ street, city, state, zip, updateFields, errors }) {
           fieldName="state"
           value={state}
           onChange={updateFields}
+          error={errors.state}
         />
         <InputField
           placeholder="Zip"
@@ -43,10 +46,9 @@ function AddressForm({ street, city, state, zip, updateFields, errors }) {
           value={zip}
           onChange={updateFields}
           fieldName="zip"
+          error={errors.zip}
         />
       </Row>
-      {errors.state && <ErrorMessage>{errors.state}</ErrorMessage>}
-      {errors.zip && <ErrorMessage>{errors.zip}</ErrorMessage>}
     </FormWrapper>
   );
 }

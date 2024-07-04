@@ -1,69 +1,79 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ErrorMessage from "./ErrorMessage";
 
 const StyledInputField = styled.div`
   position: relative;
-  margin: 20px;
+  padding: 20px 0 0;
+  width: 100%;
+  /* max-width: 230px; */
+
+  max-width: ${props => (props.$width === "full" ? "100%" : "230px")};
 `;
 
 const Input = styled.input`
-  display: block;
-  width: 230px;
-  padding: 10px;
-  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
   border: none;
-  outline: none;
   border-bottom: 2px solid var(--color-grey-400);
-  position: relative;
+  outline: 0;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
 
-  &[type="date"]::before {
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ label {
+    cursor: text;
+    top: 20px;
+  }
+
+  &:focus {
+    padding-bottom: 6px;
+    font-weight: 500;
+    border-width: 3px;
+    border-color: var(--color-green-600);
+  }
+
+  &:focus ~ label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    color: var(--color-green-500);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  /* &[type="date"]::before {
     content: attr(placeholder);
     color: var(--color-grey-600);
     position: absolute;
-    top: 10px;
-  }
+    top: 20px;
+  } */
 
-  &[type="date"]:required:invalid::-webkit-datetime-edit {
+  /* &[type="date"]:required:invalid::-webkit-datetime-edit {
     color: transparent;
   }
 
   &[type="date"]:focus::-webkit-datetime-edit {
     color: black !important;
-  }
+  } */
 
-  &[type="date"]:focus::before {
+  /* &[type="date"]:focus::before {
     color: transparent;
-  }
-
-  &:focus + label {
-    top: -20px;
-    font-size: 12px;
-    color: var(--color-green-500);
-  }
-
-  &:focus + label + span {
-    width: 230px;
-  }
+  } */
 `;
 
 const Label = styled.label`
   position: absolute;
   top: 0;
-  left: 0;
-  font-size: 1rem;
-  color: rgba(204, 204, 204, 0);
+  display: block;
+  transition: 0.2s;
+  color: var(--color-grey-500);
   pointer-events: none;
-  transition: all 0.3s ease;
-`;
-
-const Underline = styled.span`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background-color: var(--color-green-600);
-  transition: all 0.3s ease;
 `;
 
 function InputField({
@@ -75,21 +85,25 @@ function InputField({
   value,
   onChange,
   fieldName,
+  error,
+  width,
 }) {
   return (
-    <StyledInputField>
-      <Input
-        type={type}
-        placeholder={!value ? placeholder : ""}
-        id="input-field"
-        autoFocus={autoFocus}
-        required={required}
-        value={value}
-        onChange={e => onChange(fieldName, e.target.value)}
-      />
-      <Label htmlFor="input-field">{label}</Label>
-      <Underline />
-    </StyledInputField>
+    <>
+      <StyledInputField $width={width}>
+        <Input
+          type={type}
+          placeholder={!value ? placeholder : ""}
+          id="input-field"
+          autoFocus={autoFocus}
+          required={required}
+          value={value}
+          onChange={e => onChange(fieldName, e.target.value)}
+        />
+        <Label htmlFor="input-field">{label}</Label>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      </StyledInputField>
+    </>
   );
 }
 
@@ -102,6 +116,8 @@ InputField.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   fieldName: PropTypes.string,
+  error: PropTypes.string,
+  width: PropTypes.string,
 };
 
 export default InputField;

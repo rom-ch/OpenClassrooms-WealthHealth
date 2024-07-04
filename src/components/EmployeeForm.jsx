@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Row from "./Row";
-import ErrorMessage from "./ErrorMessage";
 
 function EmployeeForm({
   firstName,
@@ -22,6 +21,7 @@ function EmployeeForm({
           value={firstName}
           onChange={updateFields}
           fieldName="firstName"
+          error={errors.firstName}
         />
         <InputField
           placeholder="Last Name"
@@ -30,18 +30,21 @@ function EmployeeForm({
           value={lastName}
           onChange={updateFields}
           fieldName="lastName"
+          error={errors.lastName}
         />
       </Row>
-      <InputField
-        type="date"
-        placeholder="Date of Birth"
-        label="date of Birth"
-        required
-        value={dateOfBirth}
-        onChange={updateFields}
-        fieldName="dateOfBirth"
-      />
-      {errors.dateOfBirth && <ErrorMessage>{errors.dateOfBirth}</ErrorMessage>}
+      <Row>
+        <InputField
+          type="date"
+          placeholder="Date of Birth"
+          label="date of Birth"
+          required
+          value={dateOfBirth}
+          onChange={updateFields}
+          fieldName="dateOfBirth"
+          error={errors.dateOfBirth}
+        />
+      </Row>
     </FormWrapper>
   );
 }

@@ -3,7 +3,6 @@ import FormWrapper from "./FormWrapper";
 import InputField from "./InputField";
 import Dropdown from "./Dropdown";
 import Row from "./Row";
-import ErrorMessage from "./ErrorMessage";
 import { departments } from "../utils/departments";
 
 function CompanyForm({ startDate, department, updateFields, errors }) {
@@ -25,9 +24,9 @@ function CompanyForm({ startDate, department, updateFields, errors }) {
           fieldName="department"
           value={department}
           onChange={updateFields}
+          error={errors.department}
         />
       </Row>
-      {errors.department && <ErrorMessage>{errors.department}</ErrorMessage>}
     </FormWrapper>
   );
 }

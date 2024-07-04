@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import { useState, useRef, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
+import ErrorMessage from "./ErrorMessage";
 
 const StyledDropdown = styled.div`
   position: relative;
-  margin: 20px;
+  margin: 20px 0;
   width: 230px;
 `;
 
@@ -72,7 +73,7 @@ const OptionItem = styled.li`
   }
 `;
 
-function Dropdown({ options, label, value, onChange, fieldName }) {
+function Dropdown({ options, label, value, onChange, fieldName, error }) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -128,6 +129,7 @@ function Dropdown({ options, label, value, onChange, fieldName }) {
           </OptionItem>
         ))}
       </OptionList>
+      <ErrorMessage>{error}</ErrorMessage>
     </StyledDropdown>
   );
 }
@@ -139,6 +141,7 @@ Dropdown.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   fieldName: PropTypes.string,
+  error: PropTypes.string,
 };
 
 export default Dropdown;

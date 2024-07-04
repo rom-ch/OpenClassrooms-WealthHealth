@@ -6,7 +6,7 @@ import CompanyForm from "./CompanyForm";
 import Stepper from "../components/Stepper";
 import styled from "styled-components";
 import Button from "./Button";
-import { isValidDate, isValidZip } from "../utils/helpers";
+import { isValidDate, isValidZip, isValidName } from "../utils/helpers";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
 
 const INITIAL_DATA = {
@@ -49,6 +49,8 @@ const ButtonWrapper = styled.div`
 function MultiStepForm() {
   const [data, setData] = useState(INITIAL_DATA);
   const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
     zip: "",
     dateOfBirth: "",
     state: "",
@@ -84,6 +86,8 @@ function MultiStepForm() {
 
   function validateFields(stepIndex) {
     const newErrors = {
+      firstName: "",
+      lastName: "",
       dateOfBirth: "",
       state: "",
       zip: "",
@@ -91,6 +95,8 @@ function MultiStepForm() {
     };
 
     if (stepIndex === 0) {
+      newErrors.firstName = isValidName(data.firstName);
+      newErrors.lastName = isValidName(data.lastName);
       newErrors.dateOfBirth = isValidDate(data.dateOfBirth);
     }
 
