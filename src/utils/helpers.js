@@ -25,7 +25,7 @@ export function isValidZip(zip) {
 export function isValidName(name) {
   const nameRegex = new RegExp("^[a-zA-Z]+([ -']{0,1}[a-zA-Z]+){0,2}[.]{0,1}$");
   if (!nameRegex.test(name)) {
-    return "The name format is in valid.";
+    return "The name format is not valid.";
   }
   return "";
 }

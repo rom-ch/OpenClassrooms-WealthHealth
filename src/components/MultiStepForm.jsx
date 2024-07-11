@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import EmployeeForm from "./EmployeeForm";
 import AddressForm from "./AddressForm";
@@ -8,6 +8,8 @@ import styled from "styled-components";
 import Button from "./Button";
 import { isValidDate, isValidZip, isValidName } from "../utils/helpers";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
+import EmployeesContext from "../contexts/EmployeesContext";
+import FormSuccessMessage from "./FormSuccessMessage";
 
 const INITIAL_DATA = {
   firstName: "",
@@ -22,13 +24,16 @@ const INITIAL_DATA = {
 };
 
 const StyledMultiStepForm = styled.div`
-  padding: "2rem";
-  margin: "1rem";
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
+  border: 2px solid var(--color-green-600);
+  padding: 2.5rem 1.5rem;
+  border-radius: 0.6rem;
+  max-width: 700px;
 `;
 
 const Form = styled.form`
@@ -48,6 +53,7 @@ const ButtonWrapper = styled.div`
 
 function MultiStepForm() {
   const [data, setData] = useState(INITIAL_DATA);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -77,6 +83,8 @@ function MultiStepForm() {
         errors={errors}
       />,
     ]);
+
+  const { addEmployee } = useContext(EmployeesContext);
 
   function updateFields(fieldName, value) {
     setData(prev => {
@@ -119,8 +127,16 @@ function MultiStepForm() {
     if (!validateFields(currentStepIndex)) return;
 
     if (!isLastStep) return next();
-    alert("Successful Account Creation");
-    console.log(data);
+    addEmployee(data);
+    setIsSubmitted(true);
+  }
+
+  if (isSubmitted) {
+    return (
+      <StyledMultiStepForm>
+        <FormSuccessMessage />
+      </StyledMultiStepForm>
+    );
   }
 
   return (

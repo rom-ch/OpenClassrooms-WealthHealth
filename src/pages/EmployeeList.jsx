@@ -1,30 +1,28 @@
-import { useEffect, useState } from "react";
-import { db } from "../firebase-config";
-import { getDocs, collection } from "firebase/firestore";
+import { useContext, useEffect } from "react";
+import EmployeesContext from "../contexts/EmployeesContext";
 
 function EmployeeList() {
-  const [employeesList, setEmployeesList] = useState([]);
-
-  const employeesCollection = collection(db, "employees");
+  const { employees, getEmployeesList, isLoading } =
+    useContext(EmployeesContext);
 
   useEffect(() => {
-    const getEmployeesList = async () => {
-      try {
-        const data = await getDocs(employeesCollection);
-        const filteredData = data.docs.map(doc => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        console.log(filteredData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     getEmployeesList();
-  }, [employeesCollection]);
+  }, []);
 
-  return <div>Employee List</div>;
+  if (isLoading) return <div>Loading...</div>
+
+  return (
+    <div>
+      {employees.map(employee => (
+        <div key={employee.id} style={{ display: "flex", gap: "1rem" }}>
+          <div>{employee.firstName}</div>
+          <div>{employee.lastName}</div>
+          <div>{employee.dateOfBirth}</div>
+          <div>{employee.department}</div>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default EmployeeList;

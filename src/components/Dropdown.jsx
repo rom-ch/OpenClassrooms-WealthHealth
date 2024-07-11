@@ -23,6 +23,10 @@ const Input = styled.input`
   outline: none;
   border-bottom: 2px solid var(--color-grey-400);
 
+  &:focus {
+    border-color: var(--color-green-600);
+  }
+
   &:focus + label {
     top: -20px;
     font-size: 12px;
@@ -97,6 +101,7 @@ function Dropdown({ options, label, value, onChange, fieldName, error }) {
   function getDisplayValue() {
     if (query) return query;
     if (value) return value;
+    return "";
   }
 
   const filteredItems = options.filter(item => {
