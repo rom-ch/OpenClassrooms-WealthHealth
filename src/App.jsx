@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { EmployeesProvider } from "./contexts/EmployeesContext";
 import GlobalStyles from "./styles/GlobalStyles";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./components/ui/AppLayout";
 import AddEmployee from "./pages/AddEmployee";
 import EmployeeList from "./pages/EmployeeList";
 import PageNotFound from "./pages/PageNotFound";

@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
-import { useMultiStepForm } from "../hooks/useMultiStepForm";
+import { useMultiStepForm } from "../../hooks/useMultiStepForm";
 import EmployeeForm from "./EmployeeForm";
 import AddressForm from "./AddressForm";
 import CompanyForm from "./CompanyForm";
-import Stepper from "../components/Stepper";
+import Stepper from "./Stepper";
 import styled from "styled-components";
-import Button from "./Button";
-import { isValidDate, isValidZip, isValidName } from "../utils/helpers";
+import Button from "../ui/Button";
+import { isValidDate, isValidZip, isValidName } from "../../utils/helpers";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
-import EmployeesContext from "../contexts/EmployeesContext";
+import EmployeesContext from "../../contexts/EmployeesContext";
 import FormSuccessMessage from "./FormSuccessMessage";
 
 const INITIAL_DATA = {

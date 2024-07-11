@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
-import InputField from "./InputField";
-import Dropdown from "./Dropdown";
-import Row from "./Row";
-import { departments } from "../utils/departments";
+import InputField from "../ui/InputField";
+import Dropdown from "../ui/Dropdown";
+import Row from "../ui/Row";
+import { departments } from "../../utils/departments";
 
 function CompanyForm({ startDate, department, updateFields, errors }) {
   return (

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../form/ErrorMessage";
 
 const StyledInputField = styled.div`
   position: relative;

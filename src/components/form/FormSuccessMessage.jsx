@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "./Button";
+import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import { FaPlus, FaListUl, FaCheck } from "react-icons/fa6";
 

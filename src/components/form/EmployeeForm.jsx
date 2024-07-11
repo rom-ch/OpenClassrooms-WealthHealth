@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
-import InputField from "./InputField";
-import Row from "./Row";
+import InputField from "../ui/InputField";
+import Row from "../ui/Row";
 
 function EmployeeForm({
   firstName,

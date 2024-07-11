@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useRef, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import styled from "styled-components";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../form/ErrorMessage";
 
 const StyledDropdown = styled.div`
   position: relative;
