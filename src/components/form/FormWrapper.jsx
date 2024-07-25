@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const Heading = styled.h2`
   text-align: center;
-`
+  color: var(--color-green-800);
+`;
 
 function FormWrapper({ title, children }) {
   return (

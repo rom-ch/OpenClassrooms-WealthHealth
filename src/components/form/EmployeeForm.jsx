@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
-import InputField from "./InputField";
-import Row from "./Row";
+import InputField from "../ui/InputField";
+import Row from "../ui/Row";
 
-function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
+function EmployeeForm({
+  firstName,
+  lastName,
+  dateOfBirth,
+  updateFields,
+  errors,
+}) {
   return (
     <FormWrapper title="Employee Details">
       <Row>
@@ -15,6 +21,7 @@ function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
           value={firstName}
           onChange={updateFields}
           fieldName="firstName"
+          error={errors.firstName}
         />
         <InputField
           placeholder="Last Name"
@@ -23,17 +30,21 @@ function EmployeeForm({ firstName, lastName, dateOfBirth, updateFields }) {
           value={lastName}
           onChange={updateFields}
           fieldName="lastName"
+          error={errors.lastName}
         />
       </Row>
-      <InputField
-        type="date"
-        placeholder="Date of Birth"
-        label="date of Birth"
-        required
-        value={dateOfBirth}
-        onChange={updateFields}
-        fieldName="dateOfBirth"
-      />
+      <Row>
+        <InputField
+          type="date"
+          placeholder="Date of Birth"
+          label="date of Birth"
+          required
+          value={dateOfBirth}
+          onChange={updateFields}
+          fieldName="dateOfBirth"
+          error={errors.dateOfBirth}
+        />
+      </Row>
     </FormWrapper>
   );
 }
@@ -43,6 +54,7 @@ EmployeeForm.propTypes = {
   lastName: PropTypes.string,
   dateOfBirth: PropTypes.string,
   updateFields: PropTypes.func,
+  errors: PropTypes.object,
 };
 
 export default EmployeeForm;

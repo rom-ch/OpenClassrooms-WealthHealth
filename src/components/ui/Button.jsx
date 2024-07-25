@@ -5,7 +5,7 @@ const Button = styled.button`
   justify-content: space-between;
   align-items: center;
   gap: 1.2rem;
-  width: 120px;
+  /* width: 120px; */
   border: none;
   background-color: var(--color-green-600);
   padding: 0.5rem 1rem;
