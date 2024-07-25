@@ -1,11 +1,27 @@
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
 import InputField from "../ui/InputField";
 import Dropdown from "../ui/Dropdown";
 import Row from "../ui/Row";
-import { departments } from "../../utils/departments";
+import { fetchCollection } from "../../utils/fetchCollection";
 
 function CompanyForm({ startDate, department, updateFields, errors }) {
+  const [departments, setDepartments] = useState([]);
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const departmentsData = await fetchCollection("departments");
+        setDepartments(departmentsData);
+      } catch (error) {
+        console.error("Failed to fetch departments:", error);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
+
   return (
     <FormWrapper title="Company Details">
       <Row>

@@ -10,7 +10,7 @@ function EmployeesProvider({ children }) {
   const [isLoading, setIsloading] = useState(false);
   const employeesCollection = collection(db, "employees");
 
-  const getEmployeesList = async () => {
+  const getEmployees = async () => {
     try {
       setIsloading(true);
       const data = await getDocs(employeesCollection);
@@ -36,7 +36,7 @@ function EmployeesProvider({ children }) {
 
   return (
     <EmployeesContext.Provider
-      value={{ getEmployeesList, addEmployee, employees, isLoading }}
+      value={{ getEmployees, addEmployee, employees, isLoading }}
     >
       {children}
     </EmployeesContext.Provider>

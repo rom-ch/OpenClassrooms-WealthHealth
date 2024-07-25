@@ -1,11 +1,27 @@
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import FormWrapper from "./FormWrapper";
 import InputField from "../ui/InputField";
 import Dropdown from "../ui/Dropdown";
 import Row from "../ui/Row";
-import { states } from "../../utils/states";
+import { fetchCollection } from "../../utils/fetchCollection";
 
 function AddressForm({ street, city, state, zip, updateFields, errors }) {
+  const [states, setStates] = useState([]);
+
+  useEffect(() => {
+    const fetchStates = async () => {
+      try {
+        const statesData = await fetchCollection("states");
+        setStates(statesData);
+      } catch (error) {
+        console.error("Failed to fetch states:", error);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
   return (
     <FormWrapper title="Address">
       <Row>
