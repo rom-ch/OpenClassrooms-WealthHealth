@@ -1,25 +1,10 @@
 import PropTypes, { object } from "prop-types";
 import { useState } from "react";
 import Table from "../Table/Table";
-import Select from "../../ui/Select/Select";
-import { SelectsContainer } from "./SortableTable.styled";
-
-const sortByOptions = [
-  { label: "First Name", value: "First Name" },
-  { label: "Last Name", value: "Last Name" },
-  { label: "Date of Birth", value: "Date of Birth" },
-  { label: "Start Date", value: "Start Date" },
-  { label: "Department", value: "Department" },
-  { label: "Street", value: "Street" },
-  { label: "City", value: "City" },
-  { label: "State", value: "State" },
-  { label: "Zip", value: "Zip" },
-];
-
-const OrderOptions = [
-  { label: "Ascending", value: "asc" },
-  { label: "Descending", value: "desc" },
-];
+import Select from "../Select/Select";
+import { SortingHeader, SelectContainer } from "./SortableTable.styled";
+import { sortByOptions, OrderOptions } from "../../../utils/TableConfig";
+import Search from "../Search/Search";
 
 function SortableTable(props) {
   const [searchValue, setSearchValue] = useState("");
@@ -36,7 +21,9 @@ function SortableTable(props) {
   let filteredData = data;
   if (searchValue.length >= 3) {
     filteredData = [...data].filter(el =>
-      Object.values(el).some(value => String(value).includes(searchValue))
+      Object.values(el).some(value =>
+        String(value).toLowerCase().includes(searchValue.toLowerCase())
+      )
     );
   }
 
@@ -60,28 +47,24 @@ function SortableTable(props) {
 
   return (
     <>
-      <SelectsContainer>
-        <div>
-          <label htmlFor="search">Search</label>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
+      <SortingHeader>
+        <Search
+          value={searchValue}
+          onChange={e => setSearchValue(e.target.value)}
+        />
+        <SelectContainer>
+          <Select
+            options={sortByOptions}
+            value={sortBy}
+            onChange={o => setSortBy(o)}
           />
-        </div>
-        <Select
-          options={sortByOptions}
-          value={sortBy}
-          onChange={o => setSortBy(o)}
-        />
-        <Select
-          options={OrderOptions}
-          value={sortOrder}
-          onChange={o => setSortOrder(o)}
-        />
-      </SelectsContainer>
+          <Select
+            options={OrderOptions}
+            value={sortOrder}
+            onChange={o => setSortOrder(o)}
+          />
+        </SelectContainer>
+      </SortingHeader>
 
       <Table {...props} data={sortedData} />
     </>

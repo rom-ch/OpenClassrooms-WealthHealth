@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState, useRef, useEffect } from "react";
-import { ErrorMessage } from "../../form/ErrorMessage/ErrorMessage.styled";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage.styled";
 import {
   StyledDropdown,
   InputControl,

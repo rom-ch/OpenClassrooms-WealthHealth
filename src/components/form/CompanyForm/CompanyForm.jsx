@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FormWrapper from "../FormWrapper/FormWrapper";
-import InputField from "../../ui/InputField/InputField";
-import Dropdown from "../../ui/Dropdown/Dropdown";
+import InputField from "../InputField/InputField";
+import Dropdown from "../Dropdown/Dropdown";
 import { Row } from "../../ui/Row/Row.styled";
 import { fetchCollection } from "../../../utils/fetchCollection";
 

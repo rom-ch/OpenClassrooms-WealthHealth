@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { ErrorMessage } from "../../form/ErrorMessage/ErrorMessage.styled";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage.styled";
 import { StyledInputField, Input, Label } from "./InputField.styled";
 
 function InputField({
