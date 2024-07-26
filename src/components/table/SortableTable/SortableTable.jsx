@@ -34,7 +34,6 @@ function SortableTable(props) {
   const { data, config } = props;
 
   let filteredData = data;
-
   if (searchValue.length >= 3) {
     filteredData = [...data].filter(el =>
       Object.values(el).some(value => String(value).includes(searchValue))
