@@ -1,23 +1,35 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
+import { Button, SearchLabel, SearchInput } from "./Search.styled";
+import { IoSearchOutline } from "react-icons/io5";
 
-function Search({ value, onChange }) {
+function Search({ value, setSearchValue }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div>
-      <label htmlFor="search">Search</label>
-      <input
+    <>
+      <Button $active={isOpen} onClick={() => setIsOpen(prev => !prev)}>
+        <SearchLabel htmlFor="search">
+          <IoSearchOutline />
+        </SearchLabel>
+      </Button>
+      <SearchInput
+        placeholder="Search..."
         type="text"
         name="search"
         id="search"
         value={value}
-        onChange={onChange}
+        onChange={e => setSearchValue(e.target.value)}
+        $active={isOpen}
+        onBlur={() => setIsOpen(false)}
       />
-    </div>
+    </>
   );
 }
 
 Search.propTypes = {
   value: PropTypes.string,
-  onChange: PropTypes.func,
+  setSearchValue: PropTypes.func,
 };
 
 export default Search;

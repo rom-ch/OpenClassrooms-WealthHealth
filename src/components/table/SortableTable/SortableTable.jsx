@@ -2,9 +2,29 @@ import PropTypes, { object } from "prop-types";
 import { useState } from "react";
 import Table from "../Table/Table";
 import Select from "../Select/Select";
-import { SortingHeader, SelectContainer } from "./SortableTable.styled";
-import { sortByOptions, OrderOptions } from "../../../utils/TableConfig";
+import {
+  Container,
+  SearchContainer,
+  SelectContainer,
+} from "./SortableTable.styled";
 import Search from "../Search/Search";
+
+const sortByOptions = [
+  { label: "First Name", value: "First Name" },
+  { label: "Last Name", value: "Last Name" },
+  { label: "Date of Birth", value: "Date of Birth" },
+  { label: "Start Date", value: "Start Date" },
+  { label: "Department", value: "Department" },
+  { label: "Street", value: "Street" },
+  { label: "City", value: "City" },
+  { label: "State", value: "State" },
+  { label: "Zip", value: "Zip" },
+];
+
+const OrderOptions = [
+  { label: "Ascending", value: "asc" },
+  { label: "Descending", value: "desc" },
+];
 
 function SortableTable(props) {
   const [searchValue, setSearchValue] = useState("");
@@ -22,7 +42,7 @@ function SortableTable(props) {
   if (searchValue.length >= 3) {
     filteredData = [...data].filter(el =>
       Object.values(el).some(value =>
-        String(value).toLowerCase().includes(searchValue.toLowerCase())
+        String(value.toLowerCase()).includes(searchValue.toLowerCase())
       )
     );
   }
@@ -47,11 +67,10 @@ function SortableTable(props) {
 
   return (
     <>
-      <SortingHeader>
-        <Search
-          value={searchValue}
-          onChange={e => setSearchValue(e.target.value)}
-        />
+      <Container>
+        <SearchContainer>
+          <Search value={searchValue} setSearchValue={setSearchValue} />
+        </SearchContainer>
         <SelectContainer>
           <Select
             options={sortByOptions}
@@ -64,7 +83,7 @@ function SortableTable(props) {
             onChange={o => setSortOrder(o)}
           />
         </SelectContainer>
-      </SortingHeader>
+      </Container>
 
       <Table {...props} data={sortedData} />
     </>

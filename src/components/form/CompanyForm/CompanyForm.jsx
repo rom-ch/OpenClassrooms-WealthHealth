@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FormWrapper from "../FormWrapper/FormWrapper";
 import InputField from "../InputField/InputField";
-import Dropdown from "../Dropdown/Dropdown";
+import Dropdown from "..//Dropdown/Dropdown";
 import { Row } from "../../ui/Row/Row.styled";
 import { fetchCollection } from "../../../utils/fetchCollection";
 

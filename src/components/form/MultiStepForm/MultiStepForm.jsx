@@ -5,7 +5,11 @@ import AddressForm from "../AddressForm/AddressForm";
 import CompanyForm from "../CompanyForm/CompanyForm";
 import Stepper from "../Stepper/Stepper";
 import { Button } from "../../ui/Button/Button.styled";
-import { isValidDate, isValidZip, isValidName } from "../../../utils/helpers";
+import {
+  isValidDate,
+  isValidZip,
+  isValidName,
+} from "../../../helpers/validations";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
 import EmployeesContext from "../../../contexts/EmployeesContext";
 import FormSuccessMessage from "../FormSuccessMessage/FormSuccessMessage";
