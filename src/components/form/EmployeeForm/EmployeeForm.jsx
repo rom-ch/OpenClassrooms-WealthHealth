@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import FormWrapper from "../FormWrapper/FormWrapper";
-import InputField from "../../ui/InputField/InputField";
+import InputField from "../InputField/InputField";
 import {Row} from "../../ui/Row/Row.styled";
 
 function EmployeeForm({

@@ -1,8 +1,13 @@
 import PropTypes, { object } from "prop-types";
 import { useState } from "react";
 import Table from "../Table/Table";
-import Select from "../../ui/Select/Select";
-import { SelectsContainer } from "./SortableTable.styled";
+import Select from "../Select/Select";
+import {
+  Container,
+  SearchContainer,
+  SelectContainer,
+} from "./SortableTable.styled";
+import Search from "../Search/Search";
 
 const sortByOptions = [
   { label: "First Name", value: "First Name" },
@@ -36,7 +41,9 @@ function SortableTable(props) {
   let filteredData = data;
   if (searchValue.length >= 3) {
     filteredData = [...data].filter(el =>
-      Object.values(el).some(value => String(value).includes(searchValue))
+      Object.values(el).some(value =>
+        String(value.toLowerCase()).includes(searchValue.toLowerCase())
+      )
     );
   }
 
@@ -60,28 +67,23 @@ function SortableTable(props) {
 
   return (
     <>
-      <SelectsContainer>
-        <div>
-          <label htmlFor="search">Search</label>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
+      <Container>
+        <SearchContainer>
+          <Search value={searchValue} setSearchValue={setSearchValue} />
+        </SearchContainer>
+        <SelectContainer>
+          <Select
+            options={sortByOptions}
+            value={sortBy}
+            onChange={o => setSortBy(o)}
           />
-        </div>
-        <Select
-          options={sortByOptions}
-          value={sortBy}
-          onChange={o => setSortBy(o)}
-        />
-        <Select
-          options={OrderOptions}
-          value={sortOrder}
-          onChange={o => setSortOrder(o)}
-        />
-      </SelectsContainer>
+          <Select
+            options={OrderOptions}
+            value={sortOrder}
+            onChange={o => setSortOrder(o)}
+          />
+        </SelectContainer>
+      </Container>
 
       <Table {...props} data={sortedData} />
     </>
