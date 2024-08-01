@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const IconWrapper = styled.div`
-  background-color: var(--color-green-500);
+  background-color: var(--color-success);
   padding: 1rem;
   border-radius: 50%;
 

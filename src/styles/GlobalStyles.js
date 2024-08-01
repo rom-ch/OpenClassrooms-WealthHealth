@@ -26,6 +26,11 @@ const GlobalStyles = createGlobalStyle`
   --color-green-800: #333F04;
   --color-green-900: #191F02;
 
+  --color-success: hsla(120, 39%, 54%, 1);
+  --color-warning: hsla(35, 84%, 62%, 1);
+  --color-danger: hsla(2, 64%, 58%, 1);
+  --color-info: hsla(194, 66%, 61%, 1);
+
 }
 
 *, *::before, *::after {

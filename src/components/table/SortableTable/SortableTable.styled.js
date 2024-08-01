@@ -17,9 +17,7 @@ export const SelectContainer = styled.div`
 
 export const SearchContainer = styled.div`
   position: relative;
-  /* width: 11em; */
   min-height: 1.5em;
-  /* border: 0.05em solid #777; */
   display: flex;
   align-items: center;
   font-size: 0.8em;

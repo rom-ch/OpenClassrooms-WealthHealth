@@ -4,7 +4,7 @@ import EmployeeForm from "../EmployeeForm/EmployeeForm";
 import AddressForm from "../AddressForm/AddressForm";
 import CompanyForm from "../CompanyForm/CompanyForm";
 import Stepper from "../Stepper/Stepper";
-import { Button } from "../../ui/Button/Button.styled";
+import Button from "../../ui/Button/Button";
 import {
   isValidDate,
   isValidZip,
@@ -12,7 +12,10 @@ import {
 } from "../../../helpers/validations";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
 import EmployeesContext from "../../../contexts/EmployeesContext";
-import FormSuccessMessage from "../FormSuccessMessage/FormSuccessMessage";
+import Modal from "romch-modal-library";
+import { Link } from "react-router-dom";
+import { FaPlus, FaListUl } from "react-icons/fa6";
+
 import {
   StyledMultiStepForm,
   Form,
@@ -111,13 +114,33 @@ function MultiStepForm() {
     setIsSubmitted(true);
   }
 
-  if (isSubmitted) {
-    return (
-      <StyledMultiStepForm>
-        <FormSuccessMessage />
-      </StyledMultiStepForm>
-    );
-  }
+  // if (isSubmitted) {
+  //   return (
+  //     <StyledMultiStepForm>
+  //       <FormSuccessMessage />
+  //     </StyledMultiStepForm>
+  //   );
+  // }
+
+  // if (isSubmitted) {
+  //   return (
+  //     <Modal
+  //       type="success"
+  //       title="Employee Added !"
+  //       isOpen={isSubmitted}
+  //       onClose={() => setIsSubmitted(false)}
+  //     >
+  //       <Button as={Link} to="/" size="normal">
+  //         <FaPlus />
+  //         <span>Add new employee</span>
+  //       </Button>
+  //       <Button as={Link} to="/employee-list" size="normal">
+  //         <FaListUl />
+  //         <span>Go to employee list</span>
+  //       </Button>
+  //     </Modal>
+  //   );
+  // }
 
   return (
     <StyledMultiStepForm>
@@ -138,6 +161,23 @@ function MultiStepForm() {
           </Button>
         </ButtonWrapper>
       </Form>
+      {isSubmitted && (
+        <Modal
+          type="success"
+          title="Employee Added !"
+          isOpen={isSubmitted}
+          onClose={() => setIsSubmitted(false)}
+        >
+          <Button as={Link} to="/" size="normal">
+            <FaPlus />
+            <span>Add new employee</span>
+          </Button>
+          <Button as={Link} to="/employee-list" size="normal">
+            <FaListUl />
+            <span>Go to employee list</span>
+          </Button>
+        </Modal>
+      )}
     </StyledMultiStepForm>
   );
 }
