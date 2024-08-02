@@ -51,6 +51,19 @@ export const config = [
   },
 ];
 
+export const SearchByOptions = [
+  { label: "All", value: "all" },
+  { label: "First Name", value: "firstName" },
+  { label: "Last Name", value: "lastName" },
+  { label: "Date of Birth", value: "dateOfBirth" },
+  { label: "Start Date", value: "startDate" },
+  { label: "Department", value: "department" },
+  { label: "Street", value: "street" },
+  { label: "City", value: "city" },
+  { label: "State", value: "state" },
+  { label: "Zip", value: "zip" },
+];
+
 export const sortByOptions = [
   { label: "First Name", value: "First Name" },
   { label: "Last Name", value: "Last Name" },

@@ -1,55 +1,48 @@
 import styled, { css } from "styled-components";
 
-export const Button = styled.button`
-  padding: 0em;
+export const SearchContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: none;
-  transition: all 0.3s ease;
-  border: 1px solid var(--color-green-900);
-  border-radius: 0.25em;
-  background-color: white;
-
-  ${props =>
-    props.$active &&
-    css`
-      border-radius: 0.25em 0 0 0.25em;
-    `}
+  min-height: 1.5em;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 
-export const SearchLabel = styled.label`
-  margin: 0;
-  padding: 0.6em;
-  font-size: 1rem;
+export const SearchButton = styled.button`
+  position: relative;
+  width: 8.5em;
+  min-height: 1.5em;
+  border: 0.05em solid #777;
+  border-right-color: var(--color-grey-300);
   display: flex;
   align-items: center;
+  gap: 0.5em;
+  padding: 0.6em 0.5em;
+  border-radius: 0.25em 0 0 0.25em;
+  outline: none;
+  font-size: 0.8em;
+  background-color: white;
   cursor: pointer;
-  margin-right: -1px;
+
+  & span {
+    text-align: start;
+    flex-grow: 1;
+  }
+`;
+
+export const Caret = styled.div`
+  border: 0.25em solid transparent;
+  border-top-color: #777;
+  cursor: pointer;
 `;
 
 export const SearchInput = styled.input`
   display: block;
-  flex-grow: 1;
   font-family: inherit;
-  border: 0;
-  padding: 0.6em 0em;
-  line-height: 1.55;
+  font-size: 0.8em;
+  padding: 0.6em;
   border-radius: 0 0.25em 0.25em 0;
-  transition: all 0.3s ease;
-  width: 0;
-  border: 0;
-  background-color: hsla(72, 88%, 30%, 0.2);
-
-  ${props =>
-    props.$active &&
-    css`
-      width: 180px;
-      border: 1px solid var(--color-green-900);
-      border-left: 0;
-      padding-left: 1rem;
-    `}
+  transition: all 250ms ease;
+  border: 1px solid var(--color-green-900);
+  border-left: 0;
 
   &::placeholder {
     color: var(--color-grey-500);
@@ -58,5 +51,47 @@ export const SearchInput = styled.input`
 
   &:focus {
     outline: none;
+    background-color: hsla(72, 88%, 30%, 0.2);
   }
+`;
+
+export const OptionsList = styled.ul`
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  max-height: 15em;
+  overflow-y: auto;
+  border: 0.05em solid #777;
+  border-radius: 0.25em;
+  width: 100%;
+  left: 0;
+  top: calc(100% + 0.25em);
+  background-color: white;
+  z-index: 100;
+
+  display: ${props => (props.$isOpen ? "block" : "none")};
+`;
+
+export const Option = styled.li`
+  font-size: 0.7rem;
+  padding: 0.25em 0.5em;
+  text-align: start;
+  cursor: pointer;
+
+  ${props => props.$isOptionSelected && Selected}
+  ${props => props.$isHighlighted && Highlighted}
+`;
+
+export const Selected = css`
+  background-color: var(--color-green-600);
+  color: white;
+`;
+
+export const Highlighted = css`
+  background-color: hsla(72, 88%, 30%, 0.2);
+`;
+
+export const Value = styled.span`
+  flex-grow: 1;
+  cursor: pointer;
 `;

@@ -14,12 +14,3 @@ export const SelectContainer = styled.div`
   align-items: center;
   gap: 1rem;
 `;
-
-export const SearchContainer = styled.div`
-  position: relative;
-  min-height: 1.5em;
-  display: flex;
-  align-items: center;
-  font-size: 0.8em;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0);
-`;

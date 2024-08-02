@@ -49,6 +49,7 @@ export const OptionsList = styled.ul`
 `;
 
 export const Option = styled.li`
+  font-size: 0.8rem;
   padding: 0.25em 0.5em;
   cursor: pointer;
 

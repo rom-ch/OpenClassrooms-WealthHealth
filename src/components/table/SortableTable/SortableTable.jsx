@@ -2,29 +2,13 @@ import PropTypes, { object } from "prop-types";
 import { useState } from "react";
 import Table from "../Table/Table";
 import Select from "../Select/Select";
-import {
-  Container,
-  SearchContainer,
-  SelectContainer,
-} from "./SortableTable.styled";
+import { Container, SelectContainer } from "./SortableTable.styled";
 import Search from "../Search/Search";
-
-const sortByOptions = [
-  { label: "First Name", value: "First Name" },
-  { label: "Last Name", value: "Last Name" },
-  { label: "Date of Birth", value: "Date of Birth" },
-  { label: "Start Date", value: "Start Date" },
-  { label: "Department", value: "Department" },
-  { label: "Street", value: "Street" },
-  { label: "City", value: "City" },
-  { label: "State", value: "State" },
-  { label: "Zip", value: "Zip" },
-];
-
-const OrderOptions = [
-  { label: "Ascending", value: "asc" },
-  { label: "Descending", value: "desc" },
-];
+import {
+  SearchByOptions,
+  sortByOptions,
+  OrderOptions,
+} from "../../../utils/TableConfig";
 
 function SortableTable(props) {
   const [searchValue, setSearchValue] = useState("");
@@ -36,15 +20,26 @@ function SortableTable(props) {
     label: "Sort by :",
     value: "sortby",
   });
+  const [searchBy, setSearchBy] = useState({
+    label: "All",
+    value: "all",
+  });
+
   const { data, config } = props;
 
   let filteredData = data;
   if (searchValue.length >= 3) {
-    filteredData = [...data].filter(el =>
-      Object.values(el).some(value =>
-        String(value.toLowerCase()).includes(searchValue.toLowerCase())
-      )
-    );
+    filteredData = data.filter(el => {
+      if (searchBy.value === "all") {
+        return Object.values(el).some(value =>
+          String(value).toLowerCase().includes(searchValue.toLowerCase())
+        );
+      } else {
+        return String(el[searchBy.value])
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      }
+    });
   }
 
   let sortedData = filteredData;
@@ -68,9 +63,16 @@ function SortableTable(props) {
   return (
     <>
       <Container>
-        <SearchContainer>
-          <Search value={searchValue} setSearchValue={setSearchValue} />
-        </SearchContainer>
+        <Search
+          options={SearchByOptions}
+          value={searchValue}
+          setSearchValue={setSearchValue}
+          searchBy={searchBy}
+          onChange={o => {
+            setSearchBy(o);
+            setSearchValue("");
+          }}
+        />
         <SelectContainer>
           <Select
             options={sortByOptions}

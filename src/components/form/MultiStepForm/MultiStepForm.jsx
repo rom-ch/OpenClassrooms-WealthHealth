@@ -1,5 +1,8 @@
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import Modal from "romch-modal-library";
 import { useMultiStepForm } from "../../../hooks/useMultiStepForm";
+import EmployeesContext from "../../../contexts/EmployeesContext";
 import EmployeeForm from "../EmployeeForm/EmployeeForm";
 import AddressForm from "../AddressForm/AddressForm";
 import CompanyForm from "../CompanyForm/CompanyForm";
@@ -11,11 +14,7 @@ import {
   isValidName,
 } from "../../../helpers/validations";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
-import EmployeesContext from "../../../contexts/EmployeesContext";
-import Modal from "romch-modal-library";
-import { Link } from "react-router-dom";
 import { FaPlus, FaListUl } from "react-icons/fa6";
-
 import {
   StyledMultiStepForm,
   Form,
@@ -114,34 +113,6 @@ function MultiStepForm() {
     setIsSubmitted(true);
   }
 
-  // if (isSubmitted) {
-  //   return (
-  //     <StyledMultiStepForm>
-  //       <FormSuccessMessage />
-  //     </StyledMultiStepForm>
-  //   );
-  // }
-
-  // if (isSubmitted) {
-  //   return (
-  //     <Modal
-  //       type="success"
-  //       title="Employee Added !"
-  //       isOpen={isSubmitted}
-  //       onClose={() => setIsSubmitted(false)}
-  //     >
-  //       <Button as={Link} to="/" size="normal">
-  //         <FaPlus />
-  //         <span>Add new employee</span>
-  //       </Button>
-  //       <Button as={Link} to="/employee-list" size="normal">
-  //         <FaListUl />
-  //         <span>Go to employee list</span>
-  //       </Button>
-  //     </Modal>
-  //   );
-  // }
-
   return (
     <StyledMultiStepForm>
       <Stepper currentStepIndex={currentStepIndex} />
@@ -168,11 +139,11 @@ function MultiStepForm() {
           isOpen={isSubmitted}
           onClose={() => setIsSubmitted(false)}
         >
-          <Button as={Link} to="/" size="normal">
+          <Button as={Link} to="/" variant="success" size="normal">
             <FaPlus />
             <span>Add new employee</span>
           </Button>
-          <Button as={Link} to="/employee-list" size="normal">
+          <Button as={Link} to="/employee-list" variant="success" size="normal">
             <FaListUl />
             <span>Go to employee list</span>
           </Button>
