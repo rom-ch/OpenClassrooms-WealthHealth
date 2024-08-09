@@ -14,3 +14,10 @@ export const SelectContainer = styled.div`
   align-items: center;
   gap: 1rem;
 `;
+
+export const ItemsNumberContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;

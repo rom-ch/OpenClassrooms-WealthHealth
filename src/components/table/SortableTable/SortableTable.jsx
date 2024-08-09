@@ -2,13 +2,19 @@ import PropTypes, { object } from "prop-types";
 import { useState } from "react";
 import Table from "../Table/Table";
 import Select from "../Select/Select";
-import { Container, SelectContainer } from "./SortableTable.styled";
+import {
+  Container,
+  SelectContainer,
+  ItemsNumberContainer,
+} from "./SortableTable.styled";
 import Search from "../Search/Search";
 import {
-  SearchByOptions,
+  searchByOptions,
   sortByOptions,
-  OrderOptions,
+  orderOptions,
+  itemsPerPage,
 } from "../../../utils/TableConfig";
+import Pagination from "../Pagination/Pagination";
 
 function SortableTable(props) {
   const [searchValue, setSearchValue] = useState("");
@@ -26,6 +32,12 @@ function SortableTable(props) {
   });
 
   const { data, config } = props;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState({
+    label: "5",
+    value: 5,
+  });
 
   let filteredData = data;
   if (searchValue.length >= 3) {
@@ -60,11 +72,19 @@ function SortableTable(props) {
     });
   }
 
+  const indexOfLastRow = currentPage * rowsPerPage.value;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage.value;
+  const currentRows = sortedData.slice(indexOfFirstRow, indexOfLastRow);
+
+  function handlePagination(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
   return (
     <>
       <Container>
         <Search
-          options={SearchByOptions}
+          options={searchByOptions}
           value={searchValue}
           setSearchValue={setSearchValue}
           searchBy={searchBy}
@@ -73,6 +93,14 @@ function SortableTable(props) {
             setSearchValue("");
           }}
         />
+        <ItemsNumberContainer>
+          <label>Employees per page:</label>
+          <Select
+            options={itemsPerPage}
+            value={rowsPerPage}
+            onChange={o => setRowsPerPage(o)}
+          />
+        </ItemsNumberContainer>
         <SelectContainer>
           <Select
             options={sortByOptions}
@@ -80,14 +108,20 @@ function SortableTable(props) {
             onChange={o => setSortBy(o)}
           />
           <Select
-            options={OrderOptions}
+            options={orderOptions}
             value={sortOrder}
             onChange={o => setSortOrder(o)}
           />
         </SelectContainer>
       </Container>
 
-      <Table {...props} data={sortedData} />
+      <Table {...props} data={currentRows} />
+      <Pagination
+        length={data.length}
+        rowsPerPage={rowsPerPage.value}
+        currentPage={currentPage}
+        handlePagination={handlePagination}
+      />
     </>
   );
 }

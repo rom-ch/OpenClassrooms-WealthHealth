@@ -51,7 +51,7 @@ export const config = [
   },
 ];
 
-export const SearchByOptions = [
+export const searchByOptions = [
   { label: "All", value: "all" },
   { label: "First Name", value: "firstName" },
   { label: "Last Name", value: "lastName" },
@@ -76,7 +76,14 @@ export const sortByOptions = [
   { label: "Zip", value: "Zip" },
 ];
 
-export const OrderOptions = [
+export const orderOptions = [
   { label: "Ascending", value: "asc" },
   { label: "Descending", value: "desc" },
+];
+
+export const itemsPerPage = [
+  { label: "10", value: 10 },
+  { label: "20", value: 20 },
+  { label: "50", value: 50 },
+  { label: "100", value: 100 },
 ];
