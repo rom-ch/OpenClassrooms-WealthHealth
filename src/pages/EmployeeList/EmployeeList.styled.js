@@ -11,4 +11,5 @@ export const TableContainer = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 1350px;
+  margin: 0 auto;
 `;
