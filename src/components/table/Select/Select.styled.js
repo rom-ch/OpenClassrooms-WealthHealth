@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../../../styles/responsive";
 
 export const Container = styled.div`
   position: relative;
@@ -16,6 +17,11 @@ export const Container = styled.div`
 
   &:focus {
     border-color: hsl(200, 100%, 20%);
+  }
+
+  @media ${device.mobileL} {
+    font-size: 0.7em;
+    padding: 0.5em 0.4em;
   }
 `;
 
@@ -55,6 +61,10 @@ export const Option = styled.li`
 
   ${props => props.$isOptionSelected && Selected}
   ${props => props.$isHighlighted && Highlighted}
+
+  @media ${device.mobileL} {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Selected = css`

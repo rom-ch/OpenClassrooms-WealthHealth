@@ -15,7 +15,7 @@ function Header() {
       <h1>Wealth Health</h1>
       <Button variant="primary" onClick={() => setIsOpenModal(true)}>
         <IoPersonAddSharp />
-        Add New Employee
+        Add Employee
       </Button>
       <FormModal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
         <MultiStepForm />

@@ -94,7 +94,7 @@ function SortableTable(props) {
           }}
         />
         <ItemsNumberContainer>
-          <label>Employees per page:</label>
+          <label>Per page:</label>
           <Select
             options={itemsPerPage}
             value={rowsPerPage}

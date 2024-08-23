@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../../../styles/responsive";
 
 const variantStyles = {
   primary: {
@@ -140,4 +141,8 @@ export const StyledButton = styled.button`
         background-color: ${variantStyles[props.$variant].color};
       }
     `}
+
+    @media ${device.tablet} {
+      font-size: 14px;
+    }
 `;

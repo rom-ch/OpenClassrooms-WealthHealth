@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../../../styles/responsive";
 
 export const StyledPagination = styled.div`
   margin-top: 1rem;
@@ -25,5 +26,10 @@ export const Button = styled.button`
   &:hover {
     background-color: var(--color-green-600);
     color: white;
+  }
+
+  @media ${device.tablet} {
+    font-size: 14px;
+    width: auto;
   }
 `;

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { device } from "../../../styles/responsive";
 
 export const SearchContainer = styled.div`
   display: flex;
@@ -26,6 +27,10 @@ export const SearchButton = styled.button`
     text-align: start;
     flex-grow: 1;
   }
+
+  @media ${device.mobileL} {
+    font-size: 0.7em;
+  }
 `;
 
 export const Caret = styled.div`
@@ -41,7 +46,7 @@ export const SearchInput = styled.input`
   padding: 0.6em;
   border-radius: 0 0.25em 0.25em 0;
   transition: all 250ms ease;
-  border: 1px solid var(--color-green-900);
+  border: 1px solid #777;
   border-left: 0;
 
   &::placeholder {
@@ -52,6 +57,10 @@ export const SearchInput = styled.input`
   &:focus {
     outline: none;
     background-color: hsla(72, 88%, 30%, 0.2);
+  }
+
+  @media ${device.mobileL} {
+    font-size: 0.7em;
   }
 `;
 
