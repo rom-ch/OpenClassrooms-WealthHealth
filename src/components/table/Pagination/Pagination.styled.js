@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { device } from "../../../styles/responsive";
 
 export const StyledPagination = styled.div`
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   gap: 0.3rem;

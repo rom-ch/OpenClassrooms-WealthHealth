@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { FaAngleDown } from "react-icons/fa";
+import { device } from "../../../styles/responsive";
 
 export const StyledDropdown = styled.div`
   position: relative;
   margin: 20px 0;
   width: 230px;
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const InputControl = styled.div`
@@ -14,7 +19,7 @@ export const InputControl = styled.div`
 export const Input = styled.input`
   display: block;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   font-size: 1rem;
   border: none;
   outline: none;
@@ -32,6 +37,10 @@ export const Input = styled.input`
 
   &:focus + label + span {
     width: 100%;
+  }
+
+  @media ${device.mobileL} {
+    font-size: 14px;
   }
 `;
 
@@ -71,5 +80,9 @@ export const OptionItem = styled.li`
 
   &:hover {
     background-color: hsl(72, 88%, 23%, 0.15);
+  }
+
+  @media ${device.mobileL} {
+    font-size: 14px;
   }
 `;

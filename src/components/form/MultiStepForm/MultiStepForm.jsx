@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import Modal from "romch-modal-library";
+import PropTypes from "prop-types";
+import Modal from "modal-library-rc";
 import { useMultiStepForm } from "../../../hooks/useMultiStepForm";
 import EmployeesContext from "../../../contexts/EmployeesContext";
 import EmployeeForm from "../EmployeeForm/EmployeeForm";
@@ -14,7 +14,7 @@ import {
   isValidName,
 } from "../../../helpers/validations";
 import { FaArrowRight, FaArrowLeft, FaCheck } from "react-icons/fa6";
-import { FaPlus, FaListUl } from "react-icons/fa6";
+import { FaListUl } from "react-icons/fa6";
 import {
   StyledMultiStepForm,
   Form,
@@ -33,7 +33,7 @@ const INITIAL_DATA = {
   department: "",
 };
 
-function MultiStepForm() {
+function MultiStepForm({ onCloseModal }) {
   const [data, setData] = useState(INITIAL_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({
@@ -44,7 +44,7 @@ function MultiStepForm() {
     state: "",
     department: "",
   });
-  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+  const { currentStepIndex, step, isFirstStep, isLastStep, back, next, reset } =
     useMultiStepForm([
       <EmployeeForm
         {...data}
@@ -111,6 +111,9 @@ function MultiStepForm() {
     if (!isLastStep) return next();
     addEmployee(data);
     setIsSubmitted(true);
+    setData(INITIAL_DATA);
+    reset();
+    onCloseModal();
   }
 
   return (
@@ -139,11 +142,11 @@ function MultiStepForm() {
           isOpen={isSubmitted}
           onClose={() => setIsSubmitted(false)}
         >
-          <Button as={Link} to="/" variant="success" size="normal">
-            <FaPlus />
-            <span>Add new employee</span>
-          </Button>
-          <Button as={Link} to="/employee-list" variant="success" size="normal">
+          <Button
+            onClick={() => setIsSubmitted(false)}
+            variant="success"
+            size="normal"
+          >
             <FaListUl />
             <span>Go to employee list</span>
           </Button>
@@ -152,5 +155,9 @@ function MultiStepForm() {
     </StyledMultiStepForm>
   );
 }
+
+MultiStepForm.propTypes = {
+  onCloseModal: PropTypes.func,
+};
 
 export default MultiStepForm;

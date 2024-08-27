@@ -17,12 +17,17 @@ export function useMultiStepForm(steps) {
     });
   }
 
+  function reset() {
+    setCurrentStepIndex(0);
+  }
+
   return {
     currentStepIndex,
     step: steps[currentStepIndex],
     steps,
     next,
     back,
+    reset,
     isFirstStep: currentStepIndex === 0,
     isLastStep: currentStepIndex === steps.length - 1,
   };

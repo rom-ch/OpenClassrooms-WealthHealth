@@ -22,6 +22,7 @@ export const Container = styled.div`
   @media ${device.mobileL} {
     font-size: 0.7em;
     padding: 0.5em 0.4em;
+    width: 100%;
   }
 `;
 

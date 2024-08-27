@@ -1,15 +1,16 @@
 import { useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 import EmployeesContext from "../../contexts/EmployeesContext";
 import SortableTable from "../../components/table/SortableTable/SortableTable";
 import { Heading, TableContainer } from "./EmployeeList.styled";
 import { config } from "../../utils/TableConfig";
 
-function EmployeeList() {
+function EmployeeList({ isFormOpen }) {
   const { employees, getEmployees, isLoading } = useContext(EmployeesContext);
 
   useEffect(() => {
-    getEmployees();
-  }, []);
+    if (!isFormOpen) getEmployees();
+  }, [isFormOpen]);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -22,5 +23,9 @@ function EmployeeList() {
     </>
   );
 }
+
+EmployeeList.propTypes = {
+  isFormOpen: PropTypes.bool,
+};
 
 export default EmployeeList;

@@ -3,10 +3,11 @@ import { device } from "../../styles/responsive";
 
 export const Heading = styled.h1`
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--color-green-800);
 
   @media ${device.tablet} {
+    margin-bottom: 1rem;
     font-size: 1.5rem;
   }
 `;

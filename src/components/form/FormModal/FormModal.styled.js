@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../styles/responsive";
 
 export const Dialog = styled.dialog`
   padding: 2rem 1.5rem 1.5rem;
@@ -9,13 +10,16 @@ export const Dialog = styled.dialog`
   transform: translate(-50%, -50%);
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  min-width: 500px;
   z-index: 1000;
 
   &::backdrop {
     background-color: hsl(0, 0%, 0%, 0.5);
     backdrop-filter: blur(4px);
+  }
+
+  @media ${device.tablet} {
+    padding: 2rem 1rem 1rem;
+    width: 100%;
   }
 `;
 

@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { device } from "../../../styles/responsive";
 
 export const StyledStepper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 45rem;
+  width: 100%;
+
+  @media ${device.tablet} {
+    align-items: flex-start;
+  }
 `;
 
 export const StepItem = styled.div`
@@ -12,7 +17,7 @@ export const StepItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 15rem;
+  flex: 1;
 
   &:not(:first-child)::before {
     content: "";
@@ -22,12 +27,20 @@ export const StepItem = styled.div`
     position: absolute;
     right: 50%;
     top: 19px;
+
+    @media ${device.mobileL} {
+      top: 15px;
+    }
   }
 
   p {
     font-size: 0.9rem;
     font-weight: 500;
     font-style: italic;
+
+    @media ${device.mobileL} {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -50,4 +63,9 @@ export const Step = styled.div`
     props.$currentStepIndex === props.$i + 1
       ? "var(--color-green-400)"
       : "var(--color-green-600)"};
+
+  @media ${device.mobileL} {
+    width: 2rem;
+    height: 2rem;
+  }
 `;

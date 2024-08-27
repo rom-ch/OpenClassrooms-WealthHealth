@@ -20,6 +20,10 @@ export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 `;
 
 export const ItemsNumberContainer = styled.div`
@@ -27,6 +31,10 @@ export const ItemsNumberContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  @media ${device.mobileL} {
+    width: 100%;
+  }
 
   label {
     font-size: 0.9rem;
