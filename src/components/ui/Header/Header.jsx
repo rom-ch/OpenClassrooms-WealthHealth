@@ -10,7 +10,7 @@ function Header({ isFormOpen, setIsFormOpen }) {
   return (
     <StyledHeader>
       <Logo />
-      <h1>Wealth Health</h1>
+      <h1>HRnet</h1>
       <Button variant="primary" onClick={() => setIsFormOpen(true)}>
         <IoPersonAddSharp />
         Add Employee

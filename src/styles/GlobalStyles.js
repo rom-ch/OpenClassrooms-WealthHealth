@@ -1,6 +1,84 @@
 import { createGlobalStyle } from "styled-components";
+import PoppinsRegularEOT from "../fonts/Poppins-Regular.eot";
+import PoppinsRegularSVG from "../fonts/Poppins-Regular.svg";
+import PoppinsRegularTTF from "../fonts/Poppins-Regular.ttf";
+import PoppinsRegularWOFF from "../fonts/Poppins-Regular.woff";
+import PoppinsRegularWOFF2 from "../fonts/Poppins-Regular.woff2";
+
+import PoppinsMediumEOT from "../fonts/Poppins-Medium.eot";
+import PoppinsMediumSVG from "../fonts/Poppins-Medium.svg";
+import PoppinsMediumTTF from "../fonts/Poppins-Medium.ttf";
+import PoppinsMediumWOFF from "../fonts/Poppins-Medium.woff";
+import PoppinsMediumWOFF2 from "../fonts/Poppins-Medium.woff2";
+
+import PoppinsSemiBoldEOT from "../fonts/Poppins-SemiBold.eot";
+import PoppinsSemiBoldSVG from "../fonts/Poppins-SemiBold.svg";
+import PoppinsSemiBoldTTF from "../fonts/Poppins-SemiBold.ttf";
+import PoppinsSemiBoldWOFF from "../fonts/Poppins-SemiBold.woff";
+import PoppinsSemiBoldWOFF2 from "../fonts/Poppins-SemiBold.woff2";
+
+import PoppinsBoldEOT from "../fonts/Poppins-Bold.eot";
+import PoppinsBoldSVG from "../fonts/Poppins-Bold.svg";
+import PoppinsBoldTTF from "../fonts/Poppins-Bold.ttf";
+import PoppinsBoldWOFF from "../fonts/Poppins-Bold.woff";
+import PoppinsBoldWOFF2 from "../fonts/Poppins-Bold.woff2";
 
 const GlobalStyles = createGlobalStyle`
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsSemiBoldEOT});
+    src: url(${PoppinsSemiBoldEOT}) format('embedded-opentype'),
+        url(${PoppinsSemiBoldWOFF2}) format('woff2'),
+        url(${PoppinsSemiBoldWOFF}) format('woff'),
+        url(${PoppinsSemiBoldTTF}) format('truetype'),
+        url(${PoppinsSemiBoldSVG}) format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsBoldEOT});
+    src: url(${PoppinsBoldEOT}) format('embedded-opentype'),
+        url(${PoppinsBoldWOFF2}) format('woff2'),
+        url(${PoppinsBoldWOFF}) format('woff'),
+        url(${PoppinsBoldTTF}) format('truetype'),
+        url(${PoppinsBoldSVG}) format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsRegularEOT});
+    src: url(${PoppinsRegularEOT}) format('embedded-opentype'),
+        url(${PoppinsRegularWOFF2}) format('woff2'),
+        url(${PoppinsRegularWOFF}) format('woff'),
+        url(${PoppinsRegularTTF}) format('truetype'),
+        url(${PoppinsRegularSVG}) format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsMediumEOT});
+    src: url(${PoppinsMediumEOT}) format('embedded-opentype'),
+        url(${PoppinsMediumWOFF2}) format('woff2'),
+        url(${PoppinsMediumWOFF}) format('woff'),
+        url(${PoppinsMediumTTF}) format('truetype'),
+        url(${PoppinsMediumSVG}) format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 
 :root {
   --color-grey-0: #fff;

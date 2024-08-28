@@ -15,7 +15,6 @@ export const StyledHeader = styled.header`
 
   h1 {
     color: var(--color-green-900);
-    text-transform: uppercase;
 
     @media ${device.tablet} {
       font-size: 1.5rem;
