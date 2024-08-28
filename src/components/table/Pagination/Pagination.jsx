@@ -27,12 +27,12 @@ function Pagination({ rowsPerPage, length, handlePagination, currentPage }) {
   return (
     <StyledPagination>
       <Button
-        aria-labelledby="Go to first page"
+        aria-label="Go to first page"
         onClick={() => handlePagination(1)}
       >
         <FiChevronsLeft />
       </Button>
-      <Button aria-labelledby="go to previous page" onClick={handleClickPrev}>
+      <Button aria-label="go to previous page" onClick={handleClickPrev}>
         <FiChevronLeft />
       </Button>
       {paginationNumbers.map(pageNumber => (
@@ -44,11 +44,11 @@ function Pagination({ rowsPerPage, length, handlePagination, currentPage }) {
           {pageNumber}
         </Button>
       ))}
-      <Button aria-labelledby="Go to next page" onClick={handleClickNext}>
+      <Button aria-label="Go to next page" onClick={handleClickNext}>
         <FiChevronRight />
       </Button>
       <Button
-        aria-labelledby="Go to last page"
+        aria-label="Go to last page"
         onClick={() => handlePagination(paginationNumbers.length)}
       >
         <FiChevronsRight />
