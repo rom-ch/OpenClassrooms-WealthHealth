@@ -1,13 +1,13 @@
+import { useEffect, useState } from "react";
 import PropTypes, { object } from "prop-types";
-import { useState } from "react";
 import Table from "../Table/Table";
 import Select from "../Select/Select";
+import Search from "../Search/Search";
 import {
   Container,
   SelectContainer,
   ItemsNumberContainer,
 } from "./SortableTable.styled";
-import Search from "../Search/Search";
 import {
   searchByOptions,
   sortByOptions,
@@ -35,9 +35,13 @@ function SortableTable(props) {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState({
-    label: "5",
-    value: 5,
+    label: "10",
+    value: 10,
   });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchValue, searchBy]);
 
   let filteredData = data;
   if (searchValue.length >= 3) {
@@ -55,8 +59,9 @@ function SortableTable(props) {
   }
 
   let sortedData = filteredData;
+  console.log(sortBy, sortOrder);
 
-  if (sortOrder && sortBy.value !== "sortby") {
+  if (sortOrder.value !== "order" && sortBy.value !== "sortby") {
     const { sortValue } = config.find(column => column.label === sortBy.label);
     sortedData = [...filteredData].sort((a, b) => {
       const valueA = sortValue(a);
@@ -117,7 +122,7 @@ function SortableTable(props) {
 
       <Table {...props} data={currentRows} />
       <Pagination
-        length={data.length}
+        length={filteredData.length}
         rowsPerPage={rowsPerPage.value}
         currentPage={currentPage}
         handlePagination={handlePagination}
