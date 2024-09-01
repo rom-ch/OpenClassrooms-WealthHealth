@@ -26,10 +26,7 @@ function Pagination({ rowsPerPage, length, handlePagination, currentPage }) {
 
   return (
     <StyledPagination>
-      <Button
-        aria-label="Go to first page"
-        onClick={() => handlePagination(1)}
-      >
+      <Button aria-label="Go to first page" onClick={() => handlePagination(1)}>
         <FiChevronsLeft />
       </Button>
       <Button aria-label="go to previous page" onClick={handleClickPrev}>

@@ -59,7 +59,6 @@ function SortableTable(props) {
   }
 
   let sortedData = filteredData;
-  console.log(sortBy, sortOrder);
 
   if (sortOrder.value !== "order" && sortBy.value !== "sortby") {
     const { sortValue } = config.find(column => column.label === sortBy.label);
